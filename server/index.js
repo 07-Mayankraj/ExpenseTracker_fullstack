@@ -3,6 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const db = require("./configs/db");
 const userRoute = require('./routes/users.route');
+const expenseRouter = require('./routes/expenses.route');
+const authentication = require('./middlewares/authentication.middleware');
 
 const app = express();
 
@@ -15,6 +17,8 @@ app.use(express.json());
 // routers
 app.get('/',(req,res)=>res.send('homeroute Of backend'))
 app.use('/users',userRoute)
+app.use(authentication)
+app.use('/expenses',expenseRouter)
 
 
 app.listen(process.env.PORT,async()=>{

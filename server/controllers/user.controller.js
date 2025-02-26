@@ -18,11 +18,11 @@ exports.register = async (req, res) => {
                 const user = { name, email, password: hash }
                 await db('users').insert(user).returning('*');
 
-                console.log(user);
                 res.status(200).json({ msg: "user registred successfully" })
             }
         })
     } catch (error) {
+        console.log({error});
         res.status(500).send(error);
     }
 }
@@ -37,7 +37,7 @@ exports.login = async (req, res) => {
             //  compare password
             bcrypt.compare(password, exitingUser[0].password,(err,success) => {
                 if(success){
-                    const token = jwt.sign({ userID: exitingUser[0]._id }, process.env.JWT_SECRET_KEY, { expiresIn: '24h' })
+                    const token = jwt.sign({ userID: exitingUser[0].id ,email }, process.env.JWT_SECRET_KEY, { expiresIn: '24h' })
                     // token sent
                     res.json({ "message": "login success", "Token" : token , name : exitingUser.name })
                 }else{
@@ -49,6 +49,7 @@ exports.login = async (req, res) => {
             res.send('Wrong credentails')
         }
     } catch (error) {
+        console.log({error});
         console.log({error});
         res.json({error : error.message })
     }

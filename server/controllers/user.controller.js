@@ -50,7 +50,6 @@ exports.login = async (req, res) => {
         }
     } catch (error) {
         console.log({error});
-        console.log({error});
         res.json({error : error.message })
     }
 }

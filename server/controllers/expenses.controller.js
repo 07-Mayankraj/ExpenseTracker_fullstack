@@ -1,5 +1,7 @@
 const db = require('../configs/db'); // Knex instance
-
+const fs = require('fs');
+const path = require('path');
+const PDFDocument = require('pdfkit');
 exports.addExpense = async (req, res) => {
   try {
     const { userID, amount, category, description } = req.body;
@@ -68,3 +70,66 @@ exports.getExpenseSummary = async (req, res) => {
   }
 };
 
+exports.exportExpensesPDF = async (req, res) => {
+  try {
+    const userId = req.body.userID;
+
+    // Fetch user expenses
+    const expenses = await db('expenses')
+      .where({ user_id: userId })
+      .select('amount', 'category', 'description', 'created_at');
+
+    if (!expenses.length) {
+      return res.status(404).json({ error: 'No expenses found' });
+    }
+
+    // Create a PDF document
+    const doc = new PDFDocument({ margin: 10 });
+    const filePath = path.join(__dirname, `../expenses-${userId}.pdf`);
+    const stream = fs.createWriteStream(filePath);
+    doc.pipe(stream);
+
+    // Add Title
+    doc.fontSize(20).text('Expense Report', { align: 'center' }).moveDown(2);
+
+    // Table Headers
+    doc.fontSize(12).text('Amount', 50, doc.y);
+    doc.text('Category', 150, doc.y);
+    doc.text('Description', 300, doc.y);
+    doc.text('Date', 500, doc.y);
+    doc.moveDown(0.1).stroke();
+
+    // Add Expenses Data
+    expenses.forEach((expense) => {
+      doc.text(Number(expense.amount).toFixed(2), 50, doc.y);
+      doc.text(expense.category, 150, doc.y);
+      doc.text(expense.description || 'N/A', 300, doc.y);
+      doc.text(new Date(expense.created_at).toLocaleDateString(), 500, doc.y);
+      doc.moveDown(0.1);
+    });
+
+    // Summary
+    const totalIncome = expenses
+      .filter(e => e.category === 'Income')
+      .reduce((sum, e) => sum + Number(e.amount), 0);
+
+    const totalExpense = expenses
+      .filter(e => e.category === 'Expense')
+      .reduce((sum, e) => sum + Number(e.amount), 0);
+
+    doc.moveDown(1).fontSize(10).text(`Total Income: ₹${Number(totalIncome).toFixed(2)}`, { align: 'left' });
+    doc.text(`Total Expenses: ₹${Number(totalExpense).toFixed(2)}`, { align: 'left' });
+
+    // Finalize the document
+    doc.end();
+
+    // Wait for PDF file creation
+    stream.on('finish', () => {
+      res.download(filePath, `expenses-${userId}.pdf`);
+    });
+
+  } catch (error) {
+    console.error('PDF Export Error:', error);
+    res.status(500).json({ error: 'Failed to generate PDF file' });
+  }
+};

@@ -13,5 +13,6 @@ expenseRouter.delete('/:id', controller.deleteExpense);
 
 // Get total income and expenses summary
 expenseRouter.get('/summary', controller.getExpenseSummary);
+expenseRouter.get('/export', controller.exportExpensesPDF);
 
 module.exports = expenseRouter;

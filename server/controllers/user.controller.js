@@ -33,13 +33,14 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
     try {
         const exitingUser = await db('users').where({email})
+        console.log({exitingUser});
         if (exitingUser.length !== 0) {
             //  compare password
             bcrypt.compare(password, exitingUser[0].password,(err,success) => {
                 if(success){
                     const token = jwt.sign({ userID: exitingUser[0].id ,email }, process.env.JWT_SECRET_KEY, { expiresIn: '24h' })
                     // token sent
-                    res.json({ "message": "login success", "Token" : token , name : exitingUser.name })
+                    res.json({ "message": "login success", "Token" : token , "name" : exitingUser[0].name })
                 }else{
                      res.status(403).json({"message": "Invalid Credentials" })
                 }

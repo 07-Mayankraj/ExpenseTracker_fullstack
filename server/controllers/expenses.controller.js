@@ -125,7 +125,7 @@ exports.exportExpensesPDF = async (req, res) => {
 
     // Wait for PDF file creation
     stream.on('finish', () => {
-      res.download(filePath, `expenses-${userId}.pdf`);
+      res.sendFile(filePath, `expenses-${userId}.pdf`);
     });
 
   } catch (error) {

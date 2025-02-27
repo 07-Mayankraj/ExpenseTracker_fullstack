@@ -47,11 +47,11 @@ exports.login = async (req, res) => {
             })
         }
         else{
-            res.send('Wrong credentails')
+            res.status(403).send('Wrong credentails')
         }
     } catch (error) {
         console.log({error});
-        res.json({error : error.message })
+        res.status(403).json({error : error.message })
     }
 }
 

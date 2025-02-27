@@ -1,7 +1,9 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const API_URL = "https://expensetracker-fullstack-p5e3.onrender.com";
+// const API_URL = "http://localhost:8080";
+const API_URL = "https://expensetracker-fullstack-c8ac.onrender.com";
+
 
 export const register = async (name, email, password) => {
   return axios.post(`${API_URL}/users/register`, { name, email, password });

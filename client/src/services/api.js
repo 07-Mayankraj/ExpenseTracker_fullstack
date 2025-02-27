@@ -1,7 +1,8 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-// const API_URL = "http://localhost:8080";
+
+// const API_URL = "http://localhost:8080"; //for local testing purposes
 const API_URL = "https://expensetracker-fullstack-c8ac.onrender.com";
 
 

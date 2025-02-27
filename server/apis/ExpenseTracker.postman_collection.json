@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "459238cc-d889-4f6f-b653-e0918022ec86",
+		"name": "ExpenseTracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30114340"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"mayank raj\",\n    \"email\": \"fsocs@gmail.com\",\n    \"password\" : \"test\"\n\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add income",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI0IiwiZW1haWwiOiJmc29jc0BnbWFpbC5jb20iLCJpYXQiOjE3NDA2MDIzOTgsImV4cCI6MTc0MDY4ODc5OH0.JThx8POZ_B1i8z2FLyoxfwG-1PMX97H4qZlK1a9Nl78",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"user_id\": 1,\n  \"amount\": 500,\n  \"category\": \"Income\",\n  \"description\": \"Salary Payment\"\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/expenses/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"expenses",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"mayank raj\",\n    \"email\": \"fsocs@gmail.com\",\n    \"password\" : \"test\"\n\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add expens",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1IiwiZW1haWwiOiJmc3ZnZm9jc0BnbWFpbC5jb20iLCJpYXQiOjE3NDA2MDMxMzIsImV4cCI6MTc0MDY4OTUzMn0.ErP_SBApvzNUbU3n1KSpbiX8DlSzmYyqDuzUSdJc-z4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": 500,\n  \"category\": \"Income\",\n  \"description\": \"Salary Payment\"\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/expenses/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"expenses",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getllexpense",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1IiwiZW1haWwiOiJmc3ZnZm9jc0BnbWFpbC5jb20iLCJpYXQiOjE3NDA2MDMxMzIsImV4cCI6MTc0MDY4OTUzMn0.ErP_SBApvzNUbU3n1KSpbiX8DlSzmYyqDuzUSdJc-z4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": 500,\n  \"category\": \"Expense\",\n  \"description\": \"Salary Payment\"\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/expenses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"expenses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1IiwiZW1haWwiOiJmc3ZnZm9jc0BnbWFpbC5jb20iLCJpYXQiOjE3NDA2MDMxMzIsImV4cCI6MTc0MDY4OTUzMn0.ErP_SBApvzNUbU3n1KSpbiX8DlSzmYyqDuzUSdJc-z4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": 500,\n  \"category\": \"Expense\",\n  \"description\": \"Salary Payment\"\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/expenses/:14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"expenses",
+						":14"
+					],
+					"variable": [
+						{
+							"key": "14",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "expenses/summary",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1IiwiZW1haWwiOiJmc3ZnZm9jc0BnbWFpbC5jb20iLCJpYXQiOjE3NDA2MDMxMzIsImV4cCI6MTc0MDY4OTUzMn0.ErP_SBApvzNUbU3n1KSpbiX8DlSzmYyqDuzUSdJc-z4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": 500,\n  \"category\": \"Expense\",\n  \"description\": \"Salary Payment\"\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/expenses/summary",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"expenses",
+						"summary"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,5 +1,7 @@
 # Expense Tracker !
 
+`Test User : mayank@gmail.com / 1212`
+
 A full-stack expense management application that allows users to **track expenses, add & delete transactions, and export reports to PDF**.
 
 ## 🚀 Tech Stack

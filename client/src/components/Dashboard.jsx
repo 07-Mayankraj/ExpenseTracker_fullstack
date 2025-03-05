@@ -79,7 +79,7 @@ const Dashboard = () => {
 
             <div className="expenseslist">
 
-                <h3 >Expense List</h3>
+            <h3 >Expense List</h3>
             </div>
             <div className="tableDiv">
                 <table border="0">

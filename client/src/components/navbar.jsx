@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import logo  from '../../src/budget.png'
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
+
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
   return (
       <nav style={styles.navbar}>
         <img src={logo}  alt="Expense Tracker" />
       <div>
-        <Link to="/" style={styles.link}>Login</Link>
+        <Link to="/" style={styles.link}>{user ?  ' Hi ' + user.name : 'login'}</Link>
         <Link to="/register" style={styles.link}>Register</Link>
         <Link to="/dashboard" style={styles.link}>Dashboard</Link>
       </div>

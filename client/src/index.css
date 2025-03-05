@@ -56,7 +56,10 @@ td {
   text-align: left;
   border: 1px solid #ddd;
 }
-
+.MuiTableCell-head {
+  color: white !important; /* White font */
+  font-weight: bold;
+}
 /* Alternate row colors */
 tbody tr:nth-child(odd) {
   background-color: #D2E3C8;
